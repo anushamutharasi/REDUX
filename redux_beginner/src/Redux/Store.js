@@ -1,4 +1,5 @@
 //Using only redux
+//Installation===npm install redux
 import { createStore } from "redux";
 
 //intilization of state
