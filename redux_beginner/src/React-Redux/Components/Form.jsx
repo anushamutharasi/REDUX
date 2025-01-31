@@ -17,12 +17,25 @@ const Form = () => {
     e.preventDefault();
     //console.log(e.target.value, balance,FirstName,Mobile);
     dispatch(depositeAction(balance));
+    dispatch({ type: "ADD_TRANSACTION",payload:{
+      amount:balance,
+      date:new Date(),
+      type:"CREDIT"
+    } });
     setBalance("")
   };
   const WithdrawHandler = (e) => {
     e.preventDefault();
     console.log(e.target.value);
     dispatch(withdraAction(balance));
+    dispatch({
+      type: "ADD_TRANSACTION",
+      payload: {
+        amount: balance,
+        date: new Date(),
+        type: "DEBIT",
+      },
+    });
     setBalance("")
   };
  const FirstNameUpdateHandler=(e)=>{
@@ -43,6 +56,7 @@ const Form = () => {
     dispatch(reset());
     
   };
+
 
   return (
     <>

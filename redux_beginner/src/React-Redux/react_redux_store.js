@@ -1,11 +1,12 @@
-import { createStore } from "redux";
+import { act } from "react";
+import { combineReducers, createStore } from "redux";
 
 const initialState = {
   balance: 0,
   FirstName: "",
   Mobile: null,
 };
-function namereducer(state = initialState, action) {
+function accountreducer(state = initialState, action) {
   console.log("RESET ACTION IN REDUCER");
   
   switch (action.type) {
@@ -24,4 +25,23 @@ function namereducer(state = initialState, action) {
   }
 }
 
-export const store = createStore(namereducer);
+function Transaction_Reducer( state=[],action){
+   console.log("Transaction ACTION IN REDUCER");
+  switch(action.type){
+    case "ADD_TRANSACTION":
+      //here type means credit or debit
+      return [...state,{amount:action.payload.amount,date:action.payload.date,type:action.payload.type}]
+
+      default:
+        return state
+
+  }
+
+}
+
+const rootReducer = combineReducers({
+  account: accountreducer,
+  transaction:Transaction_Reducer
+});
+
+export const store = createStore(rootReducer);
