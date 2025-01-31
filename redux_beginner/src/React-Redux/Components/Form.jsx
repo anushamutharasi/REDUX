@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-
+import {
+  depositeAction,
+  withdraAction,
+  FirstnameAction,
+  MobileAction,
+  reset,
+} from "../actions";
 const Form = () => {
   const dispatch = useDispatch();
   const [balance, setBalance] = useState(0);
@@ -10,25 +16,32 @@ const Form = () => {
   const DepositeHandler = (e) => {
     e.preventDefault();
     //console.log(e.target.value, balance,FirstName,Mobile);
-    dispatch({ type: e.target.value, payload: balance });
+    dispatch(depositeAction(balance));
     setBalance("")
   };
   const WithdrawHandler = (e) => {
     e.preventDefault();
     console.log(e.target.value);
-    dispatch({ type: e.target.value, payload: balance });
+    dispatch(withdraAction(balance));
     setBalance("")
   };
  const FirstNameUpdateHandler=(e)=>{
      e.preventDefault();
-    dispatch({ type: "NameUpdate", payload: FirstName });
+    dispatch(FirstnameAction(FirstName));
     setFirstName("")
 
  }
   const MobileUpdateHandler = (e) => {
      e.preventDefault();
-    dispatch({ type: "MobileUpdate" ,payload:Mobile});
+    dispatch(MobileAction(Mobile));
     setMobile("")
+  };
+   const ResetHandler = (e) => {
+     e.preventDefault();
+     console.log("reset");
+     
+    dispatch(reset());
+    
   };
 
   return (
@@ -71,6 +84,10 @@ const Form = () => {
         />
         <button type="submit" onClick={MobileUpdateHandler}>
           Update
+        </button>
+        <br></br>
+        <button  onClick={ResetHandler}>
+          Reset
         </button>
         <br></br>
       </form>
