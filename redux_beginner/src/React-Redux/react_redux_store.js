@@ -1,4 +1,4 @@
-import { act } from "react";
+
 import { combineReducers, createStore } from "redux";
 
 const initialState = {

@@ -1,0 +1,6 @@
+steps to implement redux:
+===========================
+step1:Desiging the store(how it looks like)
+step2:List our actions(what to do)
+step3:Create reducer function(How to do)
+step4:Create the redux store

@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {store} from "./React-Redux/react_redux_store";
+import { redux_thunk_store } from "./REDUXTHUNK/redux_thunk_store";
 import {Provider} from "react-redux"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}>
+  <Provider store={redux_thunk_store}>
     <App />
   </Provider>
 );
