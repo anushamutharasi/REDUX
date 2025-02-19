@@ -5,7 +5,7 @@ import "./Redux/Store"
 import Importfiles from './React-Redux/Components/Importfiles';
 // import ApiFetching  from "./REDUXTHUNK/Components/ApiFetching";
 import Counter from './REDUX_TOOLKIT/components/Counter';
-
+import UserCrudApp from './REDUX_TOOLKIT/components/UserCrudApp';
 
 
 function App() {
@@ -15,9 +15,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Recat-Redux</h1>
-      <Counter/>
+      {/* <h1>Recat-Redux</h1>
+      <Counter/> */}
       {/* <Importfiles/> */}
+      <UserCrudApp/>
     </div>
   );
 }

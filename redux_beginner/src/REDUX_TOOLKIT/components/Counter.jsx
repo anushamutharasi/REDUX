@@ -1,17 +1,17 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { increment } from '../CounterSlice'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { increment } from "../Reducers/CounterSlice";
 
 const Counter = () => {
-  const Countervalue=  useSelector(state=>state.counter.value)
-  const state=useSelector(state=>state)
-  console.log("STATE IN JSX FILE",state);
-  
+  const Countervalue = useSelector((state) => state.counter.value);
+  const state = useSelector((state) => state);
+  console.log("STATE IN JSX FILE", state);
+
   console.log(Countervalue);
   console.log(increment());
-  
- const dispatch= useDispatch()
-  
+
+  const dispatch = useDispatch();
+
   return (
     <>
       <div>Counter{Countervalue}</div>
@@ -20,6 +20,6 @@ const Counter = () => {
       </button>
     </>
   );
-}
+};
 
-export default Counter
+export default Counter;
