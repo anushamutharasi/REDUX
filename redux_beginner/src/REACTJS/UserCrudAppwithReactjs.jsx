@@ -8,6 +8,7 @@ const UserCrudAppwithReactjs = () => {
   //state that is used to store the user information in the form of array of obects
   const [userDetails, setUserDetails] = useState([]);
   const [search, setSearch] = useState("");
+  const [sortOrder,setSortOrder]=useState("asc")
   console.log(search);
   const SubmitHandler = (e) => {
     e.preventDefault();
@@ -32,11 +33,7 @@ const UserCrudAppwithReactjs = () => {
       setUserEmail("");
     }
   };
-
-
-
-
-     const EditHandler=(id)=>{
+   const EditHandler=(id)=>{
         console.log("EDIT HANDLER",id);
         setEditId(id);
         const edituser=userDetails.find((user)=>user.id === id)
@@ -55,6 +52,22 @@ const UserCrudAppwithReactjs = () => {
     console.log(delete_user);
     setUserDetails(delete_user)
   };
+  const sortHandler=()=>{
+
+    const sortedusers=[...userDetails].sort((a,b)=>{
+      if(sortOrder === "asc"){
+return a.userName.localeCompare(b.userName)
+      }
+      else{
+return b.userName.localeCompare(a.userName);
+      }
+    })
+    setUserDetails(sortedusers)
+    setSortOrder(sortOrder==="asc"?"desc":"asc")
+    
+
+
+  }
   return (
     <>
       <div>UserCrudApp</div>
@@ -64,6 +77,7 @@ const UserCrudAppwithReactjs = () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
+      <button onClick={sortHandler}>Sort{sortOrder==="asc"?"Ascending":"Descending"}</button>
       <form>
         USERNAME:
         <input
@@ -135,7 +149,13 @@ const UserCrudAppwithReactjs = () => {
         userDetails.filter((user)=>user.userName.toLowerCase().includes(search.toLowerCase())).map((user) => (
         <h2>{user.userName}</h2>
       ))):""}
+      <h2 style={{color:"magenta"}}>SORTING OPERATION</h2>
+      {sortOrder.length!==0?(userDetails?.map((user)=>{
+        return <h1>{user.userName}</h1>
+      })):""}
     </>
+
+    
   );
 };
 
