@@ -6,6 +6,8 @@ import Importfiles from './React-Redux/Components/Importfiles';
 // import ApiFetching  from "./REDUXTHUNK/Components/ApiFetching";
 import Counter from './REDUX_TOOLKIT/components/Counter';
 import UserCrudApp from './REDUX_TOOLKIT/components/UserCrudApp';
+import Product from './REDUX_TOOLKIT/components/Product';
+import TodoApp from './REDUX_TOOLKIT/components/TodoApp';
 
 
 function App() {
@@ -18,7 +20,9 @@ function App() {
       {/* <h1>Recat-Redux</h1>
       <Counter/> */}
       {/* <Importfiles/> */}
-      <UserCrudApp/>
+      {/* <UserCrudApp/> */}
+      {/* <Product/> */}
+      <TodoApp/>
     </div>
   );
 }
