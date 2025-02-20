@@ -46,11 +46,7 @@ const TodoApp = () => {
         console.log(id,todo.todoname);
         setId(id)
         setTodoname(todo.TodoName);
-        setDescription(todo.Description)
-
-
-
-        
+        setDescription(todo.Description)    
      }
       const DeleteHnadler = (id) => {
         console.log(id);

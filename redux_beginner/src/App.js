@@ -8,6 +8,8 @@ import Counter from './REDUX_TOOLKIT/components/Counter';
 import UserCrudApp from './REDUX_TOOLKIT/components/UserCrudApp';
 import Product from './REDUX_TOOLKIT/components/Product';
 import TodoApp from './REDUX_TOOLKIT/components/TodoApp';
+import UserCrudAppwithReactjs from './REACTJS/UserCrudAppwithReactjs';
+import SearchOperationwithReactjs from './REACTJS/SearchOperationwithReactjs';
 
 
 function App() {
@@ -22,7 +24,10 @@ function App() {
       {/* <Importfiles/> */}
       {/* <UserCrudApp/> */}
       {/* <Product/> */}
-      <TodoApp/>
+      {/* <TodoApp/> */}
+      <UserCrudAppwithReactjs/>
+      <SearchOperationwithReactjs/>
+   
     </div>
   );
 }
