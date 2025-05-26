@@ -77,7 +77,9 @@ return b.userName.localeCompare(a.userName);
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <button onClick={sortHandler}>Sort{sortOrder==="asc"?"Ascending":"Descending"}</button>
+      <button onClick={sortHandler}>
+        Sort{sortOrder === "asc" ? "Ascending" : "Descending"}
+      </button>
       <form>
         USERNAME:
         <input
@@ -139,23 +141,25 @@ return b.userName.localeCompare(a.userName);
           </>
         </>
       ) : (
-        "There is no data"
+        <h1> {userDetails.length}</h1>
       )}
-      <h2 style={{color:"red"}}>
-       Search results
-      </h2>
+      <h1> {userDetails.length}</h1>
+      <h2 style={{ color: "red" }}>Search results</h2>
       {/* {search.length !==0?():""} */}
-      {search.length !==0?(
-        userDetails.filter((user)=>user.userName.toLowerCase().includes(search.toLowerCase())).map((user) => (
-        <h2>{user.userName}</h2>
-      ))):""}
-      <h2 style={{color:"magenta"}}>SORTING OPERATION</h2>
-      {sortOrder.length!==0?(userDetails?.map((user)=>{
-        return <h1>{user.userName}</h1>
-      })):""}
+      {search.length !== 0
+        ? userDetails
+            .filter((user) =>
+              user.userName.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((user) => <h2>{user.userName}</h2>)
+        : ""}
+      <h2 style={{ color: "magenta" }}>SORTING OPERATION</h2>
+      {sortOrder.length !== 0
+        ? userDetails?.map((user) => {
+            return <h1>{user.userName}</h1>;
+          })
+        : ""}
     </>
-
-    
   );
 };
 

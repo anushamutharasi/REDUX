@@ -4,9 +4,13 @@ import UserCard from "./UserCard";
 const Crud_with_Fetch = () => {
   //this state is used to store the values comes from api
   const [users, setUsers] = useState([]);
+  //this state is used to store the search results
+  const [searchResults,SetSearchResults]=useState([])
   //this state is used to collect the data from the form to post the new data
   const [newUser, setNewUser] = useState("");
-console.log("USERS",users);
+  console.log("USERS", users);
+  //Search value
+  const [search,setSearch]=useState("")
 
   //GET CALL
   useEffect(() => {
@@ -30,66 +34,61 @@ console.log("USERS",users);
       .catch((error) => console.log("Error in creating a new user", error));
     console.log("NEW USER", newUser);
   };
-//EDIT CALL
-const Edit_Handler=(id)=>{
-  console.log(id);
-  const userToEdit=users.find((user)=>user.id===id)
-  console.log('???????????????');
-  if(userToEdit){
- setNewUser({ name: userToEdit.name, Image: userToEdit.Image });
- console.log("USERS IN EDIT", users);
- fetch("https://67c15c3961d8935867e2ae9b.mockapi.io/api/users/"+id,{
- method:"PUT",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify(newUser)
-})
-.then((res)=>res.json())
-.then((updatedUser)=>{
-  setUsers(users.map((user)=>(user.id===id?updatedUser:user)))
-  setNewUser({name:"",Image:""})
-})
+  //EDIT CALL
+  const Edit_Handler = (id) => {
+    console.log(id);
+    const userToEdit = users.find((user) => user.id === id);
+    console.log("???????????????");
+    if (userToEdit) {
+      setNewUser({ name: userToEdit.name, Image: userToEdit.Image });
+      console.log("USERS IN EDIT", users);
+      fetch("https://67c15c3961d8935867e2ae9b.mockapi.io/api/users/" + id, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newUser),
+      })
+        .then((res) => res.json())
+        .then((updatedUser) => {
+          setUsers(users.map((user) => (user.id === id ? updatedUser : user)));
+          setNewUser({ name: "", Image: "" });
+        })
 
-.catch((err)=>console/console.log("Error  updating user",err)
-)
+        .catch((err) => console / console.log("Error  updating user", err));
+    }
+  };
 
+  //DELETE CALL
 
-  }
- 
-  
-  
-  
+  const Delete_Handler = (id) => {
+    console.log(
+      id,
+      "https://67c15c3961d8935867e2ae9b.mockapi.io/api/users/" + id
+    );
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//DELETE CALL
-
-const Delete_Handler=(id)=>{
-  console.log(id,"https://67c15c3961d8935867e2ae9b.mockapi.io/api/users/"+id);
-  
-  fetch("https://67c15c3961d8935867e2ae9b.mockapi.io/api/users/"+id, { method: "DELETE" })
-    .then(() => {
-      setUsers(users.filter((user) => user.id !== id));
+    fetch("https://67c15c3961d8935867e2ae9b.mockapi.io/api/users/" + id, {
+      method: "DELETE",
     })
-    .catch((error) => console.error("Error deleting post:", error));
-
-  }
+      .then(() => {
+        setUsers(users.filter((user) => user.id !== id));
+      })
+      .catch((error) => console.error("Error deleting post:", error));
+  };
+  //SEARCH OPERATION
+const SearchHandler=(search)=>{
+  console.log("Search", search);
+  // Filtering users based on search input
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(search.toLowerCase())
+  );
+  console.log(filteredUsers);
+  
+  SetSearchResults(filteredUsers);
+  
+  
+}
+  
+   
+ 
   return (
     <>
       <div>Crud_with_Fetch using React</div>
@@ -108,15 +107,46 @@ const Delete_Handler=(id)=>{
       />
       <br></br>
       <button onClick={Create_user}>Add User</button>
+      <input
+        type="search"
+        placeholder="Search users"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <button onClick={() => SearchHandler(search)}>Search</button>
+      <br></br>
       <br />
       {/* displaying all users by using map function */}
       {users?.length !== 0
         ? users?.map((user) => (
             <>
-              <UserCard key={user.id} userdata={user} Delete_Handler={Delete_Handler} Edit_Handler={Edit_Handler} />
+              <UserCard
+                key={user.id}
+                userdata={user}
+                Delete_Handler={Delete_Handler}
+                Edit_Handler={Edit_Handler}
+              />
             </>
           ))
         : "No data"}
+
+      <h1>==============</h1>
+      {searchResults.length > 0
+        ?( searchResults?.map((user) => (
+          
+            <UserCard
+              key={user.id}
+              userdata={user}
+              Delete_Handler={Delete_Handler}
+              Edit_Handler={Edit_Handler}
+            />
+          )))
+        : "No data"}
+      <div>Search result</div>
+
+      {/* {search.length !== 0?
+       filteredUsers.map((user) => <UserCard userdata={user}/>)
+        : ""} */}
     </>
   );
 };
