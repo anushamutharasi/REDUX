@@ -4,13 +4,13 @@ import "../../React-Hooks/Styles.css";
 
 //Props Drilling
 const ChildComponet3 = ({ name }) => {
-  return <p>Username from childcomponent3{name}</p>;
+  return <h4>Username from childcomponent3{name}</h4>;
 };
 
 const ChildComponet2 = ({ name }) => {
   return (
     <>
-      <p>Username from childcomponent2{name}</p>
+      <h4>Username from childcomponent2{name}</h4>
       <ChildComponet3 name={name} />
     </>
   );
@@ -20,7 +20,7 @@ const ChildComponet1 = ({ name }) => {
   // console.log("Name CC1",name);
   return (
     <>
-      <p>Username from childcomponent1{name}</p>
+      <h4>Username from childcomponent1{name}</h4>
       <ChildComponet2 name={name} />;
     </>
   );
@@ -50,7 +50,7 @@ export const ParentComponent = () => {
   const username1 = { name: "ansuha", id: 1 }; //context value
   return (
     <>
-      <h1>I am Parent Component</h1>
+      <h4>I am Parent Component</h4>
       <NameContextObject.Provider value={username1}>
         <FirstChildComponent />
       </NameContextObject.Provider>
@@ -61,7 +61,7 @@ export const ParentComponent = () => {
 const FirstChildComponent = () => {
   return (
     <>
-      <h1>I am FirstChildComponent</h1>
+      <h4>I am FirstChildComponent</h4>
       <SecondChildComponent />
     </>
   );
@@ -71,8 +71,8 @@ const SecondChildComponent = () => {
   const nameObj = useContext(NameContextObject);
   return (
     <>
-      <h1>I am SecondChildComponent</h1>
-      <h1>I am SecondChildComponent NAME :{nameObj.name}</h1>
+      <h4>I am SecondChildComponent</h4>
+      <h4>I am SecondChildComponent NAME :{nameObj.name}</h4>
       <ThirdChildComponent />
     </>
   );
@@ -83,8 +83,8 @@ const ThirdChildComponent = () => {
   const nameObj = useContext(NameContextObject);
   return (
     <>
-      <h1>I am ThirdChildComponent NAME :{nameObj.name}</h1>
-      <h1>I am ThirdChildComponent ID: {nameObj.id}</h1>
+      <h4>I am ThirdChildComponent NAME :{nameObj.name}</h4>
+      <h4>I am ThirdChildComponent ID: {nameObj.id}</h4>
     </>
   );
 };
