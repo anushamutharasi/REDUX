@@ -4,6 +4,8 @@ import UseRef from './UseRefHook/UseRef';
 
 import Form1 from './CustomHooks/Form1';
 import Form2 from './CustomHooks/Form2';
+import FirstApi from './CustomHooks/FirstApi';
+import SecondApi from './CustomHooks/SecondApi';
 
 const ImportHooks = () => {
   return (
@@ -13,8 +15,10 @@ const ImportHooks = () => {
       {/* <UseContextHook/>
       <UseRef/> */}
     
-      <Form1/>
-      <Form2/>
+      {/* <Form1/>
+      <Form2/> */}
+      <FirstApi/>
+      <SecondApi/>
     </div>
   );
 }
